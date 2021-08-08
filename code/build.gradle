@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+}
+
+group 'cn.lai.spring'
+version '5.3.10-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    compile(project(":spring-context"))
+    compile(project(":spring-aop"))
+    compile(project(":spring-beans"))
+    compile(project(":spring-core"))
+    compile(project(":spring-jcl"))
+//    compileOnly(project(":kotlin-coroutines"))
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+
+//    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.1'
+//    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
+//    compile group: 'org.apache.logging.log4j', name: 'log4j-jul', version: '2.14.1'
+//    compile group: 'org.apache.logging.log4j', name: 'log4j-jcl', version: '2.14.1'
+
+//    slf4j的门面
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
+    //      jcl和slf4j的适配器
+//    implementation group: "org.slf4j", name: "jcl-over-slf4j", version: '1.7.30'
+//    桥接器log4j2---> slf4j
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.14.1'
+
+//    implementation group: 'org.apache.logging.log4j', name: 'log4j-to-slf4j', version: '2.14.1'
+//    implementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.30'
+}
+
+test {
+    useJUnitPlatform()
+}
