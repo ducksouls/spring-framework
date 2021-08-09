@@ -136,8 +136,8 @@ public class ClassPathBeanDefinitionScanner extends ClassPathScanningCandidateCo
 	 */
 	public ClassPathBeanDefinitionScanner(BeanDefinitionRegistry registry, boolean useDefaultFilters,
 			Environment environment) {
-
-		this(registry, useDefaultFilters, environment,
+		 // registry的最初类型是AnnotationConfigApplicationContext
+ 		this(registry, useDefaultFilters, environment,
 				(registry instanceof ResourceLoader ? (ResourceLoader) registry : null));
 	}
 

@@ -17,6 +17,7 @@ argfile*
 pom.xml
 activemq-data/
 
+
 classes/
 /build
 buildSrc/build
@@ -44,4 +45,7 @@ atlassian-ide-plugin.xml
 
 # VS Code
 .vscode/
+
+# my code build files
 /.git - 副本/
+/code/build/

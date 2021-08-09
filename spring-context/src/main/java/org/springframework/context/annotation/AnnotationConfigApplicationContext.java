@@ -65,7 +65,13 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * through {@link #register} calls and then manually {@linkplain #refresh refreshed}.
 	 */
 	public AnnotationConfigApplicationContext() {
+		// TODO：暂时先忽略 2021-8-8 19:01:53
+		// 5.3新加入的类目前未知有什么新功能
 		StartupStep createAnnotatedBeanDefReader = this.getApplicationStartup().start("spring.context.annotated-bean-reader.create");
+		// reader 读取类(spring bean)配置信息获取 类定义(BeanDefinition)的方法
+
+		// TODO: 作用我暂不写死...先从字面意思上理解
+		// 此类只有两个属性(field) 读取器(reader), 扫描器(scanner)
 		this.reader = new AnnotatedBeanDefinitionReader(this);
 		createAnnotatedBeanDefReader.end();
 		this.scanner = new ClassPathBeanDefinitionScanner(this);
@@ -89,7 +95,9 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 */
 	public AnnotationConfigApplicationContext(Class<?>... componentClasses) {
 		this();
+		// 注册BeanDefinition
 		register(componentClasses);
+		// 初始化容器
 		refresh();
 	}
 
@@ -159,7 +167,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	 * {@link Configuration @Configuration} classes
 	 * @see #scan(String...)
 	 * @see #refresh()
-	 */
+	 */ // 注册beanDefinition, 一般会传配置类
 	@Override
 	public void register(Class<?>... componentClasses) {
 		Assert.notEmpty(componentClasses, "At least one component class must be specified");
