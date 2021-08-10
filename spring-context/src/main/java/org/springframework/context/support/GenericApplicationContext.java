@@ -93,7 +93,7 @@ import org.springframework.util.Assert;
  * @see org.springframework.beans.factory.support.PropertiesBeanDefinitionReader
  */
 public class GenericApplicationContext extends AbstractApplicationContext implements BeanDefinitionRegistry {
-
+	// 容器上下文对象的beanFactory 用的是这个...用来管理beanDefinition的工厂
 	private final DefaultListableBeanFactory beanFactory;
 
 	@Nullable
