@@ -98,7 +98,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 		// 注册BeanDefinition
 		register(componentClasses);
 		// 初始化容器
-		refresh();
+		refresh();//如果一切从简,到此步时我们会有5个beanDefinition对象/ 只有一个是我们自己定义的配置类,其余都是spring内部的postprocessor
 	}
 
 	/**

@@ -325,7 +325,7 @@ public class GenericApplicationContext extends AbstractApplicationContext implem
 
 	@Override
 	public void registerBeanDefinition(String beanName, BeanDefinition beanDefinition)
-			throws BeanDefinitionStoreException {
+			throws BeanDefinitionStoreException { // beanName 是internal打头的
 			//this指的是容器上下文,也就是一开始我们手动new的对象,然后通过他的beanFactory(DefaultListableBeanFactory)去注册beanDeifinition
 		this.beanFactory.registerBeanDefinition(beanName, beanDefinition);
 	}

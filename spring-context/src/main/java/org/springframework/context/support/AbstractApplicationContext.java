@@ -545,14 +545,14 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	public void refresh() throws BeansException, IllegalStateException {
 		synchronized (this.startupShutdownMonitor) {
 			StartupStep contextRefresh = this.applicationStartup.start("spring.context.refresh");
-
+			logger.info("开始刷新方法啦");
 			// Prepare this context for refreshing.
 			prepareRefresh();
-
+			//TODO: 这一步用来干嘛不是很清楚 2021年8月13日01:28:57
 			// Tell the subclass to refresh the internal bean factory.
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
-			// Prepare the bean factory for use in this context.
+			// Prepare the bean factory for use in this context.//还需要对beanFactory做什么?
 			prepareBeanFactory(beanFactory);
 
 			try {
@@ -615,7 +615,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	 * Prepare this context for refreshing, setting its startup date and
 	 * active flag as well as performing any initialization of property sources.
 	 */
-	protected void prepareRefresh() {
+	protected void prepareRefresh() { logger.info("---预处理方法---");
 		// Switch to active.
 		this.startupDate = System.currentTimeMillis();
 		this.closed.set(false);
@@ -626,7 +626,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				logger.trace("Refreshing " + this);
 			}
 			else {
-				logger.debug("Refreshing " + getDisplayName());
+				logger.debug("prepareRefresh方法,当前的上下文对象名字:  " + getDisplayName());
 			}
 		}
 
@@ -635,8 +635,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 		// Validate that all properties marked as required are resolvable:
 		// see ConfigurablePropertyResolver#setRequiredProperties
-		getEnvironment().validateRequiredProperties();
-
+		getEnvironment().validateRequiredProperties();//
+		logger.info("注册earlyApplicationListeners和eventsSet");
 		// Store pre-refresh ApplicationListeners...
 		if (this.earlyApplicationListeners == null) {
 			this.earlyApplicationListeners = new LinkedHashSet<>(this.applicationListeners);
