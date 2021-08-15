@@ -1,7 +1,10 @@
 package cn.lai.spring.simulation.context;
 
+import cn.lai.spring.simulation.annotations.ComponentScan;
 import lombok.extern.slf4j.Slf4j;
 
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 import java.util.HashMap;
 
 
@@ -21,7 +24,20 @@ public class MyApplicationContext {
 	public MyApplicationContext() {}
 
 
-	public MyApplicationContext(Class config) {
+	/**
+	 * 通过传入的配置类去解析
+	 *
+	 * @param config
+	 */
+	public MyApplicationContext(Class configClass) throws IllegalAccessException {
+		//起码需要个包扫描
+		if (!configClass.isAnnotationPresent(ComponentScan.class)) {
+			throw new IllegalArgumentException();
+		}
+
+		ComponentScan declaredAnnotation = (ComponentScan) configClass.getDeclaredAnnotation(ComponentScan.class);
+		System.out.println(declaredAnnotation.value());
+		System.out.println(configClass.getAnnotations());
 
 	}
 
@@ -40,6 +56,7 @@ public class MyApplicationContext {
 	}
 
 	public Object getBean(String beanName) {
-		return beanMap.get(beanName);
+		// return beanMap.get(beanName);
+		return null;
 	}
 }
